@@ -1,0 +1,20 @@
+{
+  "name": "redrock-cli",
+  "version": "0.1.0",
+  "license": "MIT",
+  "author": "Nirvana(Wenjie Zeng)",
+  "bin":{
+    "redrock-cli": "bin/index.js",
+    "redrock":"bin/index.js"
+  },
+  "description": "There is a cli that builds the project for redrock-fe",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "engines": {
+    "node": "^14.18.0 || >=16.0.0"
+  },
+  "keywords": []
+  
+}
