@@ -38,6 +38,6 @@ import HelloWorld from "./components/HelloWorld.vue";
   filter: drop-shadow(0 0 2em #42b883aa);
 }
 .logo.redrock:hover {
-    filter: drop-shadow(0 0 2em #ff3e00aa);
-  }
+  filter: drop-shadow(0 0 2em #ff3e00aa);
+}
 </style>

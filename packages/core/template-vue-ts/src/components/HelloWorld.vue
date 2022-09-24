@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref } from "vue";
 
-defineProps<{ msg: string }>()
+defineProps<{ msg: string }>();
 
-const count = ref(0)
+const count = ref(0);
 </script>
 
 <template>
@@ -29,9 +29,7 @@ const count = ref(0)
     in your IDE for a better DX
   </p>
   <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
-  <p class="read-the-docs">
-    Click on the Redrock logos to visit them
-  </p>
+  <p class="read-the-docs">Click on the Redrock logos to visit them</p>
 </template>
 
 <style scoped>
