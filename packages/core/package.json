@@ -1,0 +1,40 @@
+{
+  "name": "redrock-cli",
+  "version": "0.1.0",
+  "license": "MIT",
+  "type": "module",
+  "author": "Nirvana(Wenjie Zeng)",
+  "bin": {
+    "redrock-cli": "index.js",
+    "redrock": "index.js"
+  },
+  "description": "core module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "unbuild --stub",
+    "test": "pnpm run build && npm link",
+    "build": "unbuild"
+  },
+  "files": [
+    "index.js",
+    "template-*",
+    "dist"
+  ],
+  "engines": {
+    "node": "^14.18.0 || >=16.0.0"
+  },
+  "keywords": [
+    "redrock-fe",
+    "core"
+  ],
+  "dependencies": {
+    "@types/commander": "^2.12.2",
+    "@types/js-yaml": "^4.0.5",
+    "commander": "^9.4.0",
+    "cross-spawn": "^7.0.3",
+    "js-yaml": "^4.1.0",
+    "kolorist": "^1.6.0",
+    "minimist": "^1.2.6",
+    "prompts": "^2.4.2"
+  }
+}

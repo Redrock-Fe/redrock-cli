@@ -1,0 +1,115 @@
+variables:
+  REPO_NAME: redrock-project
+stages:
+  - setup
+  - compile
+  - imagebuild
+  - deploy
+compile_dev:
+  image: reg.redrock.team/base/redrock-fe-compiler:latest
+  stage: compile
+  tags:
+    - redrock-fe
+  script:
+    - yarn set version stable
+    - yarn install --no-immutable
+    - yarn run build
+  artifacts:
+    expire_in: 3 days
+    paths:
+      - build
+  only:
+    - dev/test
+compile_prod:
+  image: reg.redrock.team/base/redrock-fe-compiler:latest
+  stage: compile
+  tags:
+    - redrock-fe
+  script:
+    - yarn set version stable
+    - yarn install --no-immutable
+    - yarn run build
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - build
+  only:
+    - master
+image_dev:
+  image: reg.redrock.team/base/redrock-imagebuilder:latest
+  stage: imagebuild
+  tags:
+    - redrock-fe
+  script:
+    - >-
+      echo -e "FROM reg.redrock.team/base/redrock-fe-env-caddy:latest\nADD
+      ./build /build" > Dockerfile
+    - >-
+      docker build . -t
+      reg.redrock.team/fe-dev-artifacts/${REPO_NAME}:${CI_COMMIT_SHA}
+    - >-
+      docker push
+      reg.redrock.team/fe-dev-artifacts/${REPO_NAME}:${CI_COMMIT_SHA}
+  only:
+    - dev/test
+image_prod:
+  image: reg.redrock.team/base/redrock-imagebuilder:latest
+  stage: imagebuild
+  tags:
+    - redrock-fe
+  script:
+    - >-
+      echo -e "FROM reg.redrock.team/base/redrock-fe-env-caddy:latest\nADD
+      ./build /build" > Dockerfile
+    - >-
+      docker build . -t
+      reg.redrock.team/fe-prod-artifacts/${REPO_NAME}:${CI_COMMIT_SHA} -t
+      ccr.ccs.tencentyun.com/redrock/fe-prod-artifacts:${REPO_NAME}-${CI_COMMIT_SHA}
+    - >-
+      docker push
+      reg.redrock.team/fe-prod-artifacts/${REPO_NAME}:${CI_COMMIT_SHA}
+    - >-
+      docker push
+      ccr.ccs.tencentyun.com/redrock/fe-prod-artifacts:${REPO_NAME}-${CI_COMMIT_SHA}
+  only:
+    - master
+deploy_dev:
+  image: reg.redrock.team/base/redrock-kubectl:latest
+  stage: deploy
+  tags:
+    - redrock-fe
+  variables:
+    NAMESPACE: fe-dev
+    VERSION: ${CI_COMMIT_SHA}
+  script:
+    - sed -i "s/_NAMESPACE_/${NAMESPACE}/" /deploy.yaml
+    - sed -i "s/_VERSION_/${VERSION}/" /deploy.yaml
+    - sed -i "s/_REPO_NAME_/${REPO_NAME}/" /deploy.yaml
+    - kubectl apply -f /deploy.yaml
+  environment:
+    name: $REPO_NAME-dev
+    url: https://$NAMESPACE.redrock.team/$REPO_NAME/
+  only:
+    - dev/test
+deploy_prod:
+  image: reg.redrock.team/base/redrock-kubectl:latest
+  stage: deploy
+  tags:
+    - redrock-fe
+  variables:
+    NAMESPACE: fe-prod
+    VERSION: ${CI_COMMIT_SHA}
+  script:
+    - sed -i "s/_NAMESPACE_/${NAMESPACE}/" /deploy.yaml
+    - sed -i "s/_VERSION_/${VERSION}/" /deploy.yaml
+    - sed -i "s/_REPO_NAME_/${REPO_NAME}/" /deploy.yaml
+    - kubectl apply -f /deploy.yaml
+    - sleep 10
+    - >-
+      curl -X POST
+      https://be-prod.redrock.cqupt.edu.cn/cdn-cache-clean/$REPO_NAME
+  environment:
+    name: $REPO_NAME-prod
+    url: https://$NAMESPACE.redrock.team/$REPO_NAME/
+  only:
+    - master
