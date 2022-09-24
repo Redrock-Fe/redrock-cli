@@ -1,20 +1,55 @@
 {
-  "name": "redrock-cli",
-  "version": "0.1.0",
-  "license": "MIT",
-  "author": "Nirvana(Wenjie Zeng)",
-  "bin":{
+  "name": "redrock-cli-monorepo",
+  "private": "true",
+  "bin": {
     "redrock-cli": "bin/index.js",
-    "redrock":"bin/index.js"
+    "redrock": "bin/index.js"
   },
   "description": "There is a cli that builds the project for redrock-fe",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --write --cache .",
+    "lint": "eslint --cache .",
+    "build": "pnpm -r --filter='./packages/*' run build"
   },
   "engines": {
     "node": "^14.18.0 || >=16.0.0"
   },
-  "keywords": []
-  
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*": [
+      "prettier --write --cache --ignore-unknown"
+    ],
+    "packages/*/{src,types}/**/*.ts": [
+      "eslint --cache --fix"
+    ],
+    "packages/**/*.d.ts": [
+      "eslint --cache --fix"
+    ]
+  },
+  "keywords": [
+    "frontend",
+    "build-tool",
+    "redrock"
+  ],
+  "devDependencies": {
+    "@types/cross-spawn": "^6.0.2",
+    "@types/fs-extra": "^9.0.13",
+    "@types/less": "^3.0.3",
+    "@types/minimist": "^1.2.2",
+    "@types/node": "^18.7.19",
+    "@types/prompts": "^2.0.14",
+    "eslint": "^8.23.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-import": "^2.26.0",
+    "fs-extra": "^10.1.0",
+    "husky": "^8.0.1",
+    "pnpm": "^7.12.2",
+    "typescript": "^4.8.3",
+    "unbuild": "^0.8.11"
+  }
 }

@@ -1,0 +1,25 @@
+**/node_modules/
+dist/
+lib/
+es/
+.DS_Store
+.idea
+**/coverage/
+.vscode
+.rts2_cache/
+.yarn/
+temp/
+
+
+# Log files
+**/npm-debug.log*
+**/yarn-debug.log*
+**/yarn-error.log*
+lerna-debug.log
+
+# use pnpm ignore lock files
+package-lock.json
+yarn.lock
+**/package-lock.json
+**/yarn.lock
+.wireit
