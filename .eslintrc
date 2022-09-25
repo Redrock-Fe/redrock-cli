@@ -1,0 +1,53 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "rules": {
+    // Suggestions
+    "no-var": "error",
+    "eqeqeq": "warn",
+    "prefer-const": "warn",
+    "no-inline-comments": "warn",
+    // Layout & Formatting
+    "indent": [
+      "warn",
+      2,
+      {
+        "SwitchCase": 1
+      }
+    ],
+    "quotes": [
+      "warn",
+      "single"
+    ],
+    "comma-spacing": "warn",
+    "no-multi-spaces": "warn",
+    "key-spacing": [
+      "warn",
+      {
+        "afterColon": true,
+        "mode": "strict"
+      }
+    ]
+  },
+  "ignorePatterns": [
+    "config/*",
+    "babel.config.js"
+  ]
+}

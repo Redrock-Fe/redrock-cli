@@ -1,12 +1,6 @@
 {
   "name": "redrock-cli-monorepo",
   "private": "true",
-  "bin": {
-    "redrock-cli": "bin/index.js",
-    "redrock": "bin/index.js"
-  },
-  "description": "There is a cli that builds the project for redrock-fe",
-  "main": "index.js",
   "scripts": {
     "preinstall": "npx only-allow pnpm",
     "format": "prettier --write --cache .",
@@ -44,6 +38,8 @@
     "@types/minimist": "^1.2.2",
     "@types/node": "^18.7.19",
     "@types/prompts": "^2.0.14",
+    "@typescript-eslint/eslint-plugin": "^5.38.0",
+    "@typescript-eslint/parser": "^5.38.0",
     "eslint": "^8.23.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-import": "^2.26.0",
