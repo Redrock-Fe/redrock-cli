@@ -1,6 +1,6 @@
 {
   "name": "redrock-cli",
-  "version": "0.1.0",
+  "version": "0.1.3",
   "license": "MIT",
   "type": "module",
   "author": "Nirvana(Wenjie Zeng)",
@@ -12,13 +12,13 @@
   "main": "index.js",
   "scripts": {
     "dev": "unbuild --stub",
-    "test": "pnpm run build && npm link",
+    "test": "pnpm run dev && npm link",
     "build": "unbuild"
   },
   "files": [
     "index.js",
     "template-*",
-    "dist"
+    "build"
   ],
   "engines": {
     "node": "^14.18.0 || >=16.0.0"
