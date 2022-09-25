@@ -1,7 +1,7 @@
 export default {
-  entries: ["./src/index"],
+  entries: ['./src/index'],
   // Change outDir, default is 'dist'
-  outDir: "build",
+  outDir: 'build',
   // Generates .d.ts declaration file
   // declaration: true,
 };

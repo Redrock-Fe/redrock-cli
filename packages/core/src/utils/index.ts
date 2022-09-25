@@ -1,6 +1,5 @@
-import fs from "node:fs";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
+import fs from 'node:fs';
+import path from 'node:path';
 
 /**
  * 用于规范化目标路径
@@ -8,7 +7,7 @@ import { fileURLToPath } from "node:url";
  * @returns
  */
 export function formatTargetDir(targetDir: string | undefined) {
-  return targetDir?.trim().replace(/\/+$/g, "");
+  return targetDir?.trim().replace(/\/+$/g, '');
 }
 /**
  * 用于复制文件或者文件夹src到指定的文件夹dest
@@ -42,9 +41,9 @@ export function toValidPackageName(projectName: string) {
   return projectName
     .trim()
     .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/^[._]/, "")
-    .replace(/[^a-z0-9-~]+/g, "-");
+    .replace(/\s+/g, '-')
+    .replace(/^[._]/, '')
+    .replace(/[^a-z0-9-~]+/g, '-');
 }
 /**
  * 复制文件夹
@@ -66,7 +65,7 @@ export function copyDir(srcDir: string, destDir: string) {
  */
 export function isEmpty(path: string) {
   const files = fs.readdirSync(path);
-  return files.length === 0 || (files.length === 1 && files[0] === ".git");
+  return files.length === 0 || (files.length === 1 && files[0] === '.git');
 }
 /**
  * 清空文件夹（用于文件夹重名情况）
@@ -78,7 +77,7 @@ export function emptyDir(dir: string) {
     return;
   }
   for (const file of fs.readdirSync(dir)) {
-    if (file === ".git") {
+    if (file === '.git') {
       continue;
     }
     fs.rmSync(path.resolve(dir, file), { recursive: true, force: true });
@@ -91,8 +90,8 @@ export function emptyDir(dir: string) {
  */
 export function pkgFromUserAgent(userAgent: string | undefined) {
   if (!userAgent) return undefined;
-  const pkgSpec = userAgent.split(" ")[0];
-  const pkgSpecArr = pkgSpec.split("/");
+  const pkgSpec = userAgent.split(' ')[0];
+  const pkgSpecArr = pkgSpec.split('/');
   return {
     name: pkgSpecArr[0],
     version: pkgSpecArr[1],
