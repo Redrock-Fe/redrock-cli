@@ -345,15 +345,9 @@ async function init(projectName: string) {
   switch (packageManager.name) {
     case 'yarn': {
       const scripts = [
-<<<<<<< HEAD
         "yarn set version stable",
         "yarn install --no-immutable",
         "yarn run build",
-=======
-        ' yarn set version stable ',
-        ' yarn install --no-immutable ',
-        ' yarn run build ',
->>>>>>> origin/eslint-config
       ];
       doc.compile_dev.script = scripts;
       doc.compile_prod.script = scripts;

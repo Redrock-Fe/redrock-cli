@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 import fs from "node:fs";
 import path from "node:path";
-=======
-import fs from 'node:fs';
-import path from 'node:path';
->>>>>>> origin/eslint-config
 
 /**
  * 用于规范化目标路径
