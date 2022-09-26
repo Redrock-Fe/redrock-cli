@@ -3,7 +3,12 @@
   "version": "0.1.4",
   "license": "MIT",
   "type": "module",
-  "author": "Nirvana(Wenjie Zeng)",
+  "author": "Nirvana-Jie(Wenjie Zeng)",
+  "contributors": [{
+    "name":"Lomirus",
+    "email": "lomirus.dev@protonmail.com",
+    "url":"https://lomirus.github.io/"
+  }],
   "bin": {
     "redrock-cli": "index.js",
     "redrock": "index.js"
@@ -13,7 +18,8 @@
   "scripts": {
     "dev": "unbuild --stub",
     "test": "pnpm run dev && npm link",
-    "build": "unbuild"
+    "build": "unbuild",
+    "release": "pnpm run build && npm publish"
   },
   "files": [
     "index.js",
@@ -28,7 +34,6 @@
     "core"
   ],
   "dependencies": {
-    "@types/commander": "^2.12.2",
     "@types/js-yaml": "^4.0.5",
     "commander": "^9.4.0",
     "cross-spawn": "^7.0.3",

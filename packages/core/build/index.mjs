@@ -65,7 +65,14 @@ const name = "redrock-cli";
 const version$1 = "0.1.4";
 const license = "MIT";
 const type = "module";
-const author = "Nirvana(Wenjie Zeng)";
+const author = "Nirvana-Jie(Wenjie Zeng)";
+const contributors = [
+	{
+		name: "Lomirus",
+		email: "lomirus.dev@protonmail.com",
+		url: "https://lomirus.github.io/"
+	}
+];
 const bin = {
 	"redrock-cli": "index.js",
 	redrock: "index.js"
@@ -75,7 +82,8 @@ const main = "index.js";
 const scripts = {
 	dev: "unbuild --stub",
 	test: "pnpm run dev && npm link",
-	build: "unbuild"
+	build: "unbuild",
+	release: "pnpm run build && npm publish"
 };
 const files = [
 	"index.js",
@@ -90,7 +98,6 @@ const keywords = [
 	"core"
 ];
 const dependencies = {
-	"@types/commander": "^2.12.2",
 	"@types/js-yaml": "^4.0.5",
 	commander: "^9.4.0",
 	"cross-spawn": "^7.0.3",
@@ -105,6 +112,7 @@ const config = {
 	license: license,
 	type: type,
 	author: author,
+	contributors: contributors,
 	bin: bin,
 	description: description,
 	main: main,
@@ -232,7 +240,7 @@ async function init(projectName) {
         {
           type: () => !fs.existsSync(targetDir) || isEmpty(targetDir) ? null : "confirm",
           name: "overwrite",
-          message: () => (targetDir === "." ? "Current directory" : `Target directory "${targetDir}"`) + ` is not empty. Remove existing files and continue?`
+          message: () => (targetDir === "." ? "Current directory" : `Target directory "${targetDir}"`) + " is not empty. Remove existing files and continue?"
         },
         {
           type: (_, { overwrite: overwrite2 }) => {
@@ -350,7 +358,7 @@ Scaffolding project in ${root}...`);
     write(file);
   }
   const pkg = JSON.parse(
-    fs.readFileSync(path.join(templateDir, `package.json`), "utf-8")
+    fs.readFileSync(path.join(templateDir, "package.json"), "utf-8")
   );
   pkg.name = packageName || getProjectName();
   write("package.json", JSON.stringify(pkg, null, 2));
@@ -359,7 +367,7 @@ Scaffolding project in ${root}...`);
   );
   doc.variables.REPO_NAME = packageName || getProjectName();
   switch (packageManager.name) {
-    case "yarn":
+    case "yarn": {
       const scripts = [
         "yarn set version stable",
         "yarn install --no-immutable",
@@ -368,18 +376,18 @@ Scaffolding project in ${root}...`);
       doc.compile_dev.script = scripts;
       doc.compile_prod.script = scripts;
       break;
-    default:
+    }
+    default: {
       const script = [
         `${packageManager.name} install`,
         `${packageManager.name} run build`
       ];
       doc.compile_dev.script = script;
       doc.compile_prod.script = script;
+    }
   }
   write(".gitlab-ci.yml", yaml.dump(doc));
-  console.log(`
-Done. Now run:
-`);
+  console.log("\nDone. Now run:\n");
   if (root !== cwd) {
     console.log(`  cd ${path.relative(cwd, root)}`);
   }

@@ -261,7 +261,7 @@ async function init(projectName: string) {
 
   // user choice associated with prompts
   const { framework, overwrite, packageName, variant, packageManager } = result;
-//   console.log(packageManager);
+  // console.log(packageManager);
 
   const root = path.join(cwd, targetDir);
 
@@ -345,9 +345,9 @@ async function init(projectName: string) {
   switch (packageManager.name) {
     case 'yarn': {
       const scripts = [
-        "yarn set version stable",
-        "yarn install --no-immutable",
-        "yarn run build",
+        'yarn set version stable',
+        'yarn install --no-immutable',
+        'yarn run build',
       ];
       doc.compile_dev.script = scripts;
       doc.compile_prod.script = scripts;

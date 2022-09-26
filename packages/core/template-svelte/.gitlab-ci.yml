@@ -1,5 +1,5 @@
 variables:
-  REPO_NAME: d
+  REPO_NAME: redrock-project
 stages:
   - setup
   - compile
