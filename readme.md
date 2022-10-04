@@ -1,4 +1,5 @@
 # redrock-cli⚡
+
 This is a vite-based scalable scaffolding
 
 Provide more convenient use for the Web devops at the front end of the Redrock
@@ -8,15 +9,11 @@ Provide more convenient use for the Web devops at the front end of the Redrock
 - 📦 Optimized Build(Keep working🧑🏻‍💻)
 - 🔩 Universal Plugin Interface(The same as above)
 
-
-
 ## Packages
 
-| Package                                           | Version                                                                                                        |
-| ------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------- |
-| [redork/redrock-cli](packages/core)                             |   
-
-
+| Package                              | Version |
+| ------------------------------------ | :------ |
+| [redrork/redrock-cli](packages/core) |
 
 ## License
 
