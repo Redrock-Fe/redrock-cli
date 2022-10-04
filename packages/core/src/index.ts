@@ -18,7 +18,7 @@ import {
   toValidPackageName,
 } from './utils/index';
 import config from '../package.json';
-import type { GitlabCI } from '../types'
+import type { GitlabCI } from '../types';
 
 // Avoids autoconversion to number of the project name by defining that the args
 // non associated with an option ( _ ) needs to be parsed as a string. See #4606
@@ -89,9 +89,19 @@ const FRAMEWORKS: Framework[] = [
         color: yellow,
       },
       {
+        name: 'react-h5',
+        display: 'JavaScript-H5',
+        color: green,
+      },
+      {
         name: 'react-ts',
         display: 'TypeScript',
         color: blue,
+      },
+      {
+        name: 'react-ts-h5',
+        display: 'TypeScript-H5',
+        color: red,
       },
     ],
   },
