@@ -1,14 +1,21 @@
 {
   "name": "redrock-cli",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "license": "MIT",
   "type": "module",
   "author": "Nirvana-Jie(Wenjie Zeng)",
-  "contributors": [{
-    "name":"Lomirus",
-    "email": "lomirus.dev@protonmail.com",
-    "url":"https://lomirus.github.io/"
-  }],
+  "contributors": [
+    {
+      "name": "Lomirus",
+      "email": "lomirus.dev@protonmail.com",
+      "url": "https://lomirus.github.io/"
+    },
+    {
+      "name": "chovrio",
+      "email": "1480733667@qq.com",
+      "url": "https://www.chovrio.club/hexo/"
+    }
+  ],
   "bin": {
     "redrock-cli": "index.js",
     "redrock": "index.js"
